@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Salah Reminder</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-logo">
+        <i class="fas fa-kaaba"></i>
+        <span>Salah Reminder</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/login.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="auth-container">
+      <div class="card">
+        <div class="card-header">
+          <i class="fas fa-user-plus"></i>
+          <h2>Create Account</h2>
+          <p>Join to receive personalized Salah reminders</p>
+        </div>
+
+        <div id="alertBox" class="alert"></div>
+
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <div class="input-icon-group">
+              <i class="fas fa-user"></i>
+              <input type="text" id="fullName" class="form-control" placeholder="e.g. Ahmad Khan" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <div class="input-icon-group">
+              <i class="fas fa-envelope"></i>
+              <input type="email" id="email" class="form-control" placeholder="name@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-icon-group">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label for="city">City</label>
+              <div class="input-icon-group">
+                <i class="fas fa-city"></i>
+                <input type="text" id="city" class="form-control" placeholder="London" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="country">Country</label>
+              <div class="input-icon-group">
+                <i class="fas fa-globe"></i>
+                <input type="text" id="country" class="form-control" placeholder="UK" required>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="margin-top: 10px;">Create Account</button>
+        </form>
+
+        <p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+          Already have an account? <a href="/login.html" style="color: var(--primary-main); font-weight: 600; text-decoration: none;">Sign In</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Salah Reminder. All rights reserved.</p>
+  </footer>
+
+  <script src="/js/auth.js"></script>
+</body>
+</html>
