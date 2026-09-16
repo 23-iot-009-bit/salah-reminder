@@ -1,0 +1,9 @@
+{
+  "name": "salah-reminder",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix backend",
+    "start": "node backend/server.js"
+  }
+}

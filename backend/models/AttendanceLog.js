@@ -44,7 +44,7 @@ class AttendanceLogModel {
       return await MongooseAttendanceLog.create(data);
     }
     const newLog = {
-      _id: 'log_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+      _id: new mongoose.Types.ObjectId(),
       userId: data.userId,
       prayerName: data.prayerName,
       date: data.date,

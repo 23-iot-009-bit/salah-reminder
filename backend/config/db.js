@@ -3,9 +3,13 @@ const mongoose = require('mongoose');
 let isConnected = false;
 
 const connectDB = async () => {
+  if (mongoose.connection && mongoose.connection.readyState >= 1) {
+    isConnected = true;
+    return;
+  }
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/salah_reminder', {
-      serverSelectionTimeoutMS: 2000
+      serverSelectionTimeoutMS: 4000
     });
     isConnected = true;
     console.log(`MongoDB Connected: ${conn.connection.host}`);

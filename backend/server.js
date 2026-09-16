@@ -1,14 +1,16 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config({ path: path.join(__dirname, '.env') });
+dotenv.config();
 
 const connectDB = require('./config/db');
-const { initEmailCron } = require('./services/emailCronService');
 
 const authRoutes = require('./routes/authRoutes');
 const salahRoutes = require('./routes/salahRoutes');
 const attendanceRoutes = require('./routes/attendanceRoutes');
+const cronRoutes = require('./routes/cronRoutes');
 
 const app = express();
 
@@ -24,6 +26,7 @@ connectDB();
 app.use('/api', authRoutes);
 app.use('/api', salahRoutes);
 app.use('/api/attendance', attendanceRoutes);
+app.use('/api/cron', cronRoutes);
 
 // Status route
 app.get('/api/status', (req, res) => {
@@ -42,11 +45,13 @@ app.get('*', (req, res, next) => {
   res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
-// Initialize Nodemailer & node-cron background workers
-initEmailCron();
-
+// Start listening when executed directly (local dev / production VM)
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-  console.log(`Frontend accessible at: http://localhost:${PORT}`);
-});
+if (!process.env.VERCEL && process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log('Server listening on port ' + PORT);
+    console.log('Frontend accessible at: http://localhost:' + PORT);
+  });
+}
+
+module.exports = app;

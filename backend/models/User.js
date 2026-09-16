@@ -45,7 +45,7 @@ class UserModel {
       return await MongooseUser.create(data);
     }
     const newUser = {
-      _id: 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+      _id: new mongoose.Types.ObjectId(),
       fullName: data.fullName,
       email: data.email.toLowerCase(),
       password: data.password,
